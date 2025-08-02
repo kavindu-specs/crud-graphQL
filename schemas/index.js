@@ -1,4 +1,4 @@
-const grapsql = require("graphql")
+const graphql = require("graphql")
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -6,7 +6,7 @@ const {
   GraphQLString,
   GraphQLFloat,
   GraphQLList,
-  GraphQlBoolean
+  GraphQLBoolean
 } = graphql;
 
 const {User} = require("../models/users")
@@ -43,7 +43,7 @@ const RootQuery = new GraphQLObjectType({
 })
 
 const Mutation = new GraphQLObjectType({
-    type: "Mutation",
+    name: "Mutation",
     fields:{
          saveUser:{
             type: UserType,
@@ -51,7 +51,7 @@ const Mutation = new GraphQLObjectType({
                     username: { type: GraphQLString },
                     mobile: { type: GraphQLString },
                     password: { type: GraphQLString },
-                    isAdmin: { type: GraphQlBoolean },
+                    isAdmin: { type: GraphQLBoolean },
              },
              async resolve(parent,args){
                 const newUser = new User({
@@ -63,12 +63,6 @@ const Mutation = new GraphQLObjectType({
                 await newUser.save();
                 return newUser;
             }
-
-        },
-        updateUser:{
-
-        },
-        deleteUser:{
 
         }
     }

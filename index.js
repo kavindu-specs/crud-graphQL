@@ -20,8 +20,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended: true}));
 
-app.use( errorHandler)
-
 app.use((req, res, next) => {
   console.log('Time: ', Date.now());
   next();
